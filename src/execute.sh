@@ -1,6 +1,10 @@
 #!/bin/bash
 
 ### PREREQUISITES ###
+
+# tar zxvf hadoop-3.2.1.tar.gz --> UNZIP THE HADOOP FILES each time
+# sudo mv hadoop-3.2.1 /usr/local/hadoop --> move the unzipped files to the $HADOOP_HOME directory
+
 # 1. Delete core-site.xml contents --> cd ~/usr/local/hadoop/etc/hadoop sudo nano core-site.xml
 # 2. Change hostname in config file --> cd ~/.ssh sudo nano config --> public DNS needs changed from Amazon AWS instance
 # 3. Edit hosts file with private IP --> cd ~/usr/local/hadoop/etc/hadoop sudo nano hosts --> private IP followed by namenode or datanode
@@ -28,7 +32,7 @@ echo "Starting Yarn Files: "
 ./start-yarn.sh # start the yarn files which include resource manager and node managers #
 echo "Running MapReduce Job: "
 cd ..
-bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar wordcount enwik9 output # runs the MapReduce job #
+bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar wordcount input output # runs the MapReduce job #
 # be sure to create input file manually using sudo nano input and put data in here before running job #
 echo "Displaying Output of Running MapReduce Job: "
 bin/hdfs dfs -cat output/* # displays the output found in the hadoop distributed file system stored in the output file as declared in previous step #
