@@ -11,7 +11,7 @@
 # 4. Remove localhost keygen from known hosts --> cd ~/.ssh ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R "localhost"
 # 5. Create new keygen with new IP address --> cd ~/.ssh ssh-keygen -t rsa (press enter when prompted, and 'y' to overwrite)
 # 6. Move new keygen to authorized keys --> cd ~/.ssh cat id_rsa.pub >> authorized_keys
-# 7. Create input file in correct directory --> cd ~/usr/local/hadoop sudo nano input (or for bigger files scp -r filename ubuntu@ip:/home/ubuntu)
+# 7. Create input file in correct directory --> cd ~/usr/local/hadoop sudo nano input (or for bigger files scp -r filename ubuntu@ip:/usr/local/hadoop)
 # 8. Copy the script to the namenode server --> cd~/usr/local/hadoop sudo nano execute.sh (copy and paste here)
 # 9. Make the script executable --> cd ~/usr/local/hadoop sudo chmod +x execute.sh
 # 10. Run the execute.sh script --> cd ~/usr/local/hadoop ./execute.sh
@@ -45,6 +45,7 @@ echo "Printing Duration: "
 echo $duration
 echo "Stopping timer: "
 echo "Total Time Including Provisioning of Instances and Execution Time: "
+# Set provisioning time --> 1 machine: 300sec, 3 machines: 900sec, 5 machines: 1,500sec, 10 machines: 3,000sec, etc.
 provisioningTime=300
 total_time=$(( $provisioningTime + $duration ))
 echo $total_time
